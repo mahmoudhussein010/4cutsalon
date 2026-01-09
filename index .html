@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4CUT SALON</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body{
+margin:0;font-family:Arial,sans-serif;background:#fff;color:#111;text-align:center
+}
+
+/* Header */
+.header{padding:20px;position:relative}
+.header img{height:200px}
+.slogan{font-size:26px;font-weight:bold;color:#0eb8be;margin-top:10px}
+
+/* Language switch */
+.language-switch {
+  position: fixed; 
+  top: 15px; 
+  right: 15px; 
+  z-index: 9999;
+}
+.language-switch span {
+  padding:12px 24px;
+  border-radius:25px;
+  font-weight:bold;
+  cursor:pointer;
+  user-select:none;
+  display:inline-block;
+  pointer-events:auto;
+}
+.en{background:#00aeef;color:#fff}
+.ar{background:#0eb8be;color:#fff}
+
+/* Services */
+.section{padding:30px 20px}
+.services{
+display:flex;flex-wrap:wrap;justify-content:center;gap:12px;max-width:900px;margin:auto
+}
+.service{
+min-width:220px;max-width:270px;padding:15px;border-radius:12px;
+background:#0eb8be;color:#fff;cursor:pointer;
+transition:.3s
+}
+.service:nth-child(even){background:#00aeef}
+.service.selected{
+background:#fff;color:#0eb8be;
+box-shadow:0 0 15px rgba(0,0,0,.25)
+}
+.service h3{margin:0 0 6px}
+.service p{margin:0;font-size:14px}
+
+/* Booking Box */
+.booking-box{
+max-width:420px;margin:40px auto;padding:20px;border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,.15)
+}
+.booking-box h3{margin-bottom:15px}
+
+.row{
+display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:12px
+}
+input,select,button{
+height:50px;border-radius:25px;border:1px solid #ccc;
+padding:0 15px;font-size:15px
+}
+input,select{width:180px}
+.pay-btn{
+border:2px solid #111;background:#fff;font-weight:bold;cursor:pointer
+}
+.pay-btn.active{background:#111;color:#0eb8be}
+.send-btn{
+background:#0eb8be;color:#fff;border:none;
+font-weight:bold;cursor:pointer;width:220px
+}
+
+/* Contact icons */
+.contact-icons{
+display:flex;justify-content:center;gap:15px;margin:30px 0
+}
+.contact-icons a{
+width:65px;height:65px;border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+border:3px solid #000;color:#000;font-size:32px;
+text-decoration:none; /* إزالة أي خط تحت الروابط */
+}
+.contact-icons a:hover{background:#000;color:#fff}
+
+/* Map */
+.map-container{
+max-width:450px;height:200px;margin:30px auto;border-radius:15px;
+overflow:hidden;border:5px solid;
+border-image:linear-gradient(45deg,#4285F4,#34A853,#FBBC05,#EA4335) 1
+}
+
+/* Feedback & Review buttons */
+.feedback-review{
+display:flex;justify-content:center;gap:15px;margin:20px 0
+}
+.feedback-review a{
+padding:10px 22px;border-radius:25px;border:2px solid #111;
+font-weight:bold;text-decoration:none;color:#111
+}
+.feedback-review a:hover{background:#111;color:#0eb8be}
+
+/* Footer */
+footer{background:#f9f9f9;padding:25px}
+.newsletter{
+display:flex;justify-content:center;gap:10px;margin-bottom:20px
+}
+.newsletter input{width:auto;min-width:150px;font-weight:bold}
+.newsletter button{
+padding:0 22px;font-weight:bold;border-radius:25px;
+background:#0eb8be;color:#fff;border:none
+}
+
+/* Responsive */
+@media(max-width:600px){
+.services{flex-direction:column}
+.service{width:90%}
+input,select{width:100%}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Language Switch -->
+<div class="language-switch">
+<span id="langBtn" class="en">EN</span>
+</div>
+
+<!-- Header -->
+<div class="header">
+<img src="logo.png">
+<div class="slogan" id="slogan">ستايلك، شغفنا</div>
+</div>
+
+<!-- Services -->
+<div class="section">
+<h2 id="servicesTitle">خدماتنا</h2>
+<div class="services" id="services">
+<div class="service" data-name="قص شعر رجالي"><h3>قص شعر رجالي</h3><p>قص احترافي</p></div>
+<div class="service" data-name="حلاقة أطفال"><h3>حلاقة أطفال</h3><p>تعامل لطيف</p></div>
+<div class="service" data-name="تشذيب دقن"><h3>تشذيب دقن</h3><p>تحديد مثالي</p></div>
+<div class="service" data-name="صبغة شعر"><h3>صبغة شعر</h3><p>ألوان طبيعية</p></div>
+<div class="service" data-name="تنظيف للبشرة"><h3>تنظيف للبشرة</h3><p>إزالة الشوائب</p></div>
+<div class="service" data-name="سيشوار وتصفيف الشعر"><h3>سيشوار وتصفيف الشعر</h3><p>ستايل نهائي</p></div>
+<div class="service" data-name="حمام كريم للشعر"><h3>حمام كريم للشعر</h3><p>ترطيب وعلاج</p></div>
+<div class="service" data-name="شمع إزالة شعر الوجه"><h3>شمع إزالة شعر الوجه</h3><p>جلسة دقيقة</p></div>
+</div>
+</div>
+
+<!-- Booking Box -->
+<div class="booking-box">
+<h3 id="bookingText">برجاء الضغط علي الخدمات المطلوبة للمتابعة</h3>
+
+<div class="row">
+<input type="date" id="date">
+<select id="time"></select>
+</div>
+
+<div class="row">
+<button class="pay-btn" data-pay="Instapay transfer">انستاباي تحويل بنكي</button>
+<button class="pay-btn" data-pay="Instapay wallet">انستاباي محفظة</button>
+</div>
+
+<button class="send-btn" id="sendBtn">
+<i class="fab fa-whatsapp"></i> ارسال طلب الحجز
+</button>
+</div>
+
+<!-- Contact icons -->
+<div class="contact-icons">
+<a href="https://wa.me/201221884907"><i class="fab fa-whatsapp"></i></a>
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-facebook-f"></i></a>
+</div>
+
+<!-- Map -->
+<div class="map-container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.525868550746!2d31.244787575550713!3d29.96431367496404!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x145847ec46a91a33%3A0xd6fd8b11106b9774!2s4%20Cut%20Salon!5e0!3m2!1sen!2seg!4v1767965219237!5m2!1sen!2seg" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+<!-- Feedback & Review -->
+<div class="feedback-review">
+<a id="feedback">الشكاوى والمقترحات</a>
+<a id="review">قيمنا</a>
+</div>
+
+<!-- Footer -->
+<footer>
+<div class="newsletter">
+<input type="email" id="email" placeholder="اكتب بريدك الالكتروني">
+<button id="subscribe">اشترك</button>
+</div>
+<div>© 2026 4CUT SALON</div>
+</footer>
+
+<script>
+// ===== SERVICES SELECT =====
+let selectedServices=[];
+document.querySelectorAll('.service').forEach(s=>{
+s.onclick=()=>{
+s.classList.toggle('selected');
+const name=s.dataset.name;
+selectedServices.includes(name)?
+selectedServices=selectedServices.filter(x=>x!==name):
+selectedServices.push(name);
+}
+});
+
+// ===== DATE & TIME =====
+const dateInput=document.getElementById('date');
+const timeSelect=document.getElementById('time');
+dateInput.value=new Date().toISOString().split('T')[0];
+function loadTimes(){
+timeSelect.innerHTML='';
+const day=new Date(dateInput.value).getDay();
+if(day===0){alert('نعتذر عن الحجز، المحل إجازة أسبوعية');return;}
+const times=['12:00 PM','1:00 PM','2:00 PM','3:00 PM','4:00 PM','5:00 PM','6:00 PM','7:00 PM','8:00 PM','9:00 PM','10:00 PM','11:00 PM'];
+times.forEach(t=>{timeSelect.innerHTML+=`<option>${t}</option>`;});
+}
+dateInput.onchange=loadTimes;
+loadTimes();
+
+// ===== PAYMENT =====
+let payment='';
+document.querySelectorAll('.pay-btn').forEach(b=>{
+b.onclick=()=>{
+document.querySelectorAll('.pay-btn').forEach(x=>x.classList.remove('active'));
+b.classList.add('active');
+payment=b.dataset.pay;
+}
+});
+
+// ===== SEND WHATSAPP =====
+document.getElementById('sendBtn').onclick=()=>{
+if(!selectedServices.length || !payment){alert('اكمل البيانات'); return;}
+const msg=
+`طلب حجز موعد\n\nالخدمات:\n${selectedServices.join('\n')}\n\nالتاريخ: ${dateInput.value}\nالوقت: ${timeSelect.value}\nطريقة الدفع: ${payment}`;
+window.open(`https://wa.me/201221884907?text=${encodeURIComponent(msg)}`);
+};
+
+// ===== LANGUAGE SWITCH =====
+const langBtn=document.getElementById('langBtn');
+let isEnglish=false;
+langBtn.addEventListener('click', ()=>{
+isEnglish=!isEnglish;
+
+document.documentElement.lang=isEnglish?'en':'ar';
+document.documentElement.dir=isEnglish?'ltr':'rtl';
+langBtn.textContent=isEnglish?'AR':'EN';
+
+// ترجمة الحجز
+document.getElementById('bookingText').textContent=isEnglish?'Please select the required service to continue':'برجاء الضغط علي الخدمات المطلوبة للمتابعة';
+document.getElementById('sendBtn').innerHTML=isEnglish?'<i class="fab fa-whatsapp"></i> Send booking request':'<i class="fab fa-whatsapp"></i> ارسال طلب الحجز';
+document.getElementById('subscribe').textContent=isEnglish?'Subscribe':'اشترك';
+document.getElementById('email').placeholder=isEnglish?'Enter your email':'اكتب بريدك الالكتروني';
+document.getElementById('servicesTitle').textContent=isEnglish?'Our Services':'خدماتنا';
+
+// ترجمة السلوغان
+document.getElementById('slogan').textContent = isEnglish ? 'Your Style, Our Passion' : 'ستايلك، شغفنا';
+
+// ترجمة الخدمات
+const servicesMap = {
+"قص شعر رجالي":"Men's Haircut",
+"حلاقة أطفال":"Kids Haircut",
+"تشذيب دقن":"Beard Trim & Shape",
+"صبغة شعر":"Hair Coloring",
+"تنظيف للبشرة":"Face Cleaning",
+"سيشوار وتصفيف الشعر":"Hair Styling & Blow Dry",
+"حمام كريم للشعر":"Hair Cream Treatment",
+"شمع إزالة شعر الوجه":"Waxing"
+};
+const descMap = {
+"قص احترافي":"Professional haircut",
+"تعامل لطيف":"Gentle handling",
+"تحديد مثالي":"Perfect shaping",
+"ألوان طبيعية":"Natural colors",
+"إزالة الشوائب":"Remove impurities",
+"ستايل نهائي":"Final styling",
+"ترطيب وعلاج":"Moisturize & treatment",
+"جلسة دقيقة":"Precise session"
+};
+const feedbackMap = {"الشكاوى والمقترحات":"Feedback & Suggestions","قيمنا":"Review"};
+document.querySelectorAll('.service').forEach(s=>{
+const name=s.dataset.name;
+s.querySelector('h3').textContent = isEnglish? servicesMap[name] : name;
+const desc=s.querySelector('p').textContent;
+if(isEnglish){s.querySelector('p').textContent=descMap[desc]||desc;}
+else{
+const descMapAr=Object.fromEntries(Object.entries(descMap).map(([k,v])=>[v,k]));
+s.querySelector('p').textContent=descMapAr[desc]||desc;
+}
+});
+// ترجمة feedback & review
+document.getElementById('feedback').textContent=isEnglish?feedbackMap["الشكاوى والمقترحات"]:"الشكاوى والمقترحات";
+document.getElementById('review').textContent=isEnglish?feedbackMap["قيمنا"]:"قيمنا";
+
+// ترجمة الدفع
+document.querySelectorAll('.pay-btn').forEach(b=>{
+if(b.dataset.pay==='Instapay transfer'){b.textContent = isEnglish?'Instapay Transfer':'انستاباي تحويل بنكي';}
+if(b.dataset.pay==='Instapay wallet'){b.textContent = isEnglish?'Instapay Wallet':'انستاباي محفظة';}
+});
+
+});
+</script>
+
+</body>
+</html>
